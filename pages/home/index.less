@@ -1,0 +1,103 @@
+.ant-carousel {
+  .slick-slide {
+    text-align: center;
+    overflow: hidden;
+    height: 420px;
+    line-height: 420px;
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+    @media screen and (max-width: 768px) {
+      height: 94px;
+      line-height: 94px;
+    }
+  }
+  .slick-prev {
+    top: calc(50% - 15px);
+    left: 10px;
+    background-color: rgba(123, 92, 189, 0.6) !important;
+    padding: 15px;
+    border-radius: 50%;
+    z-index: 999;
+    &:hover {
+      background-color: rgba(123, 92, 189, 0.8) !important;
+    }
+    &::before {
+      background-image: url(/left-arrow.png);
+      background-size: 13px;
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      content: '';
+      background-repeat: no-repeat;
+      position: absolute;
+      left: 8px;
+      top: 8px;
+    }
+  }
+  .slick-next {
+    top: calc(50% - 15px);
+    right: 10px;
+    background-color: rgba(123, 92, 189, 0.6) !important;
+    padding: 15px;
+    border-radius: 50%;
+    z-index: 999;
+    &:hover {
+      background-color: rgba(123, 92, 189, 0.8) !important;
+    }
+    &::before {
+      background-image: url(/right-arrow.png);
+      background-size: 13px;
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      content: '';
+      background-repeat: no-repeat;
+      position: absolute;
+      left: 8px;
+      top: 8px;
+    }
+  }
+}
+
+.ant-carousel .slick-slide h3 {
+  color: #fff;
+}
+
+.banner-left {
+  position: absolute;
+  left: 0;
+  width: calc((100vw - 1200px) / 2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  .ant-carousel .slick-slide {
+    height: auto;
+  }
+}
+
+.banner-right {
+  position: absolute;
+  right: 0;
+  width: calc((100vw - 1200px) / 2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  .ant-carousel .slick-slide {
+    height: auto;
+  }
+}
+.banner {
+  margin-bottom: 25px;
+}
+.custom.main-background {
+  .ant-col {
+    padding: 10px 12px;
+    @media screen and (max-width: 768px) {
+      padding: 5px;
+    }
+  }
+}

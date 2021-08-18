@@ -1,0 +1,58 @@
+@import '../../../../style/vars.less';
+
+
+.loading-screen {
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(1, 1, 1, .9);
+  img {
+    animation-name: loading;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-delay: 0s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-fill-mode: none;
+    animation-play-state: running;
+    padding: 15px;
+    border-radius: 50%;
+  }
+}
+
+@keyframes loading {
+  0% {
+    width: 200px;
+    border-bottom: 2px solid @white;
+  }
+
+  25% {
+    width: 225px;
+    border: none;
+    border-right: 2px solid @white;
+  }
+
+  50% {
+    width: 240px;
+    border: none;
+    border-top: 2px solid @white;
+  }
+
+  75% {
+    width: 225px;
+    border: none;
+    border-left: 2px solid @white;
+  }
+
+  100% {
+    width: 200px;
+    border: none;
+    border-bottom: 2px solid @white;
+  }
+}
