@@ -1,7 +1,7 @@
 import { PureComponent } from 'react';
 import Head from 'next/head';
 import { connect } from 'react-redux';
-import { Tabs, message } from 'antd';
+import { Tabs, Button, message, Modal } from 'antd';
 import Page from '@components/common/layout/page';
 import { PerformerAccountForm } from '@components/performer/accountForm';
 import { PerformerBankingForm } from '@components/performer/bankingForm';
@@ -47,7 +47,8 @@ class AccountSettings extends PureComponent<IProps> {
   static onlyPerformer = true;
 
   state = {
-    pwUpdating: false
+    pwUpdating: false,
+    viewedaddBanking: true
   };
 
   static async getInitialProps() {
@@ -63,6 +64,10 @@ class AccountSettings extends PureComponent<IProps> {
       message.error('You have no permission on this page!');
       Router.push('/home');
     }
+  }
+
+  handleViewAddBanking() {
+    this.setState({ viewedaddBanking: false });
   }
 
   onAvatarUploaded(data: any) {
@@ -173,10 +178,11 @@ class AccountSettings extends PureComponent<IProps> {
     const {
       currentUser, updating, ui, countries
     } = this.props;
-    const { pwUpdating } = this.state;
+    const { pwUpdating,viewedaddBanking } = this.state;
     const uploadHeaders = {
       authorization: authService.getToken()
     };
+    console.log(currentUser, 'jhdjasgdjgdashdgashdasg');
     return (
       <>
         <Head>
@@ -247,6 +253,37 @@ class AccountSettings extends PureComponent<IProps> {
               </Tabs.TabPane>
             </Tabs>
           </div>
+          { currentUser.isPerformer && currentUser?.bankingInformation == null && (
+            <Modal
+              key="addBanking"
+              width={768}
+              visible={viewedaddBanking}
+              onOk={this.handleViewAddBanking.bind(this)}
+              onCancel={this.handleViewAddBanking.bind(this)}
+              footer={null}
+            >
+              <img
+                alt="logo"
+                src={ui && ui.logo ? ui.logo : '/logo-new.jpg'}
+                height="64"
+                style={{margin: "0 25% 10px"}}
+              />
+              <div className="text-center" >
+                <h1>
+                  Thank you for verifying your email.
+                </h1>
+                <h3>
+                  To complete your registration and start earning money, please enter your bank details.
+                  <br></br>
+                  To continue: 
+                </h3>
+                &nbsp;
+                <Button size="large" type="link" className="danger" onClick={this.handleViewAddBanking.bind(this)}>
+                  <a>Click Here</a>
+                </Button>
+              </div>
+            </Modal>
+          )}
         </Page>
       </>
     );

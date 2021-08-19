@@ -379,6 +379,10 @@ class PerformerProfile extends PureComponent<IProps> {
   handleViewAddBanking() {
     this.setState({ viewedaddBanking: false });
   }
+  
+  redirecttoBilling() {
+    return Router.replace('/model/account');
+  }
 
   render() {
     const {
@@ -412,6 +416,10 @@ class PerformerProfile extends PureComponent<IProps> {
       videosData,
       performerPosts
     } = this.state;
+    if (currentUser.isPerformer && currentUser?.bankingInformation == null) {
+      // console.log('sjiksahsjushudud');
+      return this.redirecttoBilling();
+    }
     return (
       <>
         <Head>
@@ -842,7 +850,7 @@ class PerformerProfile extends PureComponent<IProps> {
                   />
                 </Modal>
             )}
-            
+
             { currentUser.isPerformer && currentUser?.bankingInformation == null &&  (
                 <Modal
                   key="addBanking"
